@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word Beater</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+<body class="cyan darken-2">
+
+    <nav>
+        <div class="nav-wrapper teal lighten-4">
+            <a href="#" class="brand-logo center">Word Beater</a>
+        </div>
+    </nav>
+
+    <div class="container white-text">
+        <h4 class="center">Type the word within <span class="text-success" id="seconds"> 5</span>
+            seconds</h4>
+        <h2 class="center" id="current-word"></h2>
+        <div class="row">
+            <div class="col offset-s3 s6 offset-s3">
+                <input placeholder="Hello" id="word_input" type="text" class="validate" autofocus>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col s6">
+                <h4> Time left:
+                    <span id="time">
+                        0
+                    </span>
+                </h4>
+            </div>
+            <div class="col s6">
+                <h4> Score:
+                    <span id="score">
+                        0
+                    </span>
+                </h4>
+            </div>
+
+            <div class="col s6"></div>
+        </div>
+
+    </div>
+    <script src="wordbeater.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</body>
+
+</html>
