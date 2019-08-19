@@ -1,33 +1,76 @@
-window.addEventListener("load", init);
+window.addEventListener("load", alert("Please select a level to begin"));
+
 //Globals
 const lvls = {
-  easy: 5,
-  med: 3,
-  hard: 1
+  easy: 6,
+  med: 4,
+  hard: 2
 };
 
-let time, score, isPlaying, lvl;
+// Words for each level
+const easyWords = [
+  "apple",
+  "delight",
+  "sun",
+  "four",
+  "water",
+  "six",
+  "grass",
+  "table",
+  "ear",
+  "pick",
+  "none",
+  "light",
+  "cow",
+  "dog",
+  "cat",
+  "pan",
+  "wendy",
+  "wind",
+  "ocean"
+];
 
-function lvlCh(e) {
-  e.preventDefault();
-  if (e.target.id === "hard") {
-    lvl = "hard";
-  } else if (e.target.id === "medium") {
-    lvl = "medium";
-  } else {
-    lvl = "easy";
-  }
-  return lvl;
-}
+const mediumWords = [
+  "prefiguration",
+  "archetype",
+  "epitome",
+  "guide",
+  "holotype",
+  "image",
+  "loadstar",
+  "lodestar",
+  "microcosm",
+  "original",
+  "paradigm",
+  "pilot",
+  "prototype",
+  "template",
+  "templet"
+];
 
-time = 5;
-score = 0;
+const hardWords = [
+  "uncomplicated",
+  "unproblematic",
+  "dim-witted",
+  "simple-minded",
+  "supererogatory",
+  "superfluous",
+  "surplus",
+  "duplicate",
+  "elucidate",
+  "enlighten",
+  "illuminate",
+  "recompense",
+  "remunerate",
+  "correct",
+  "counterbalance"
+];
 
 //DOM elements
-
 const easy = document.querySelector("#easy");
 const medium = document.querySelector("#medium");
 const hard = document.querySelector("#hard");
+const newGame = document.querySelector("#newGame");
 
 const wordInput = document.querySelector("#word-input");
 const currentWord = document.querySelector("#current-word");
@@ -36,19 +79,57 @@ const timeDisplay = document.querySelector("#time");
 const message = document.querySelector("#message");
 const seconds = document.querySelector("#seconds");
 
-const words = ["one", "two", "three", "four", "five", "six", "seven"];
+//Event Listeners
+easy.addEventListener("click", levelSelector);
+medium.addEventListener("click", levelSelector);
+hard.addEventListener("click", levelSelector);
+newGame.addEventListener("click", restartGame);
 
-easy.addEventListener("click", lvlCh);
-medium.addEventListener("click", lvlCh);
-hard.addEventListener("click", lvlCh);
+let time, resetTime, score, isPlaying, lvl, wordsChoice;
+
+score = 0;
+
+function levelSelector(e) {
+  e.preventDefault();
+  if (e.target.id === "hard") {
+    level = {
+      lvl: "hard",
+      words: hardWords,
+      time: 4
+    };
+    // console.log(e.target.id);
+  } else if (e.target.id === "medium") {
+    level = {
+      lvl: "medium",
+      words: mediumWords,
+      time: 6
+    };
+    // console.log(e.target.id);
+  } else {
+    level = {
+      lvl: "easy",
+      words: easyWords,
+      time: 8
+    };
+    // console.log(e.target.id);
+  }
+  // console.log(level);
+
+  wordInput.setAttribute("autofocus", "autofocus");
+
+  // showWord(level.words);
+  time = level.time;
+  resetTime = level.time;
+  wordsChoice = level.words;
+  init(wordsChoice);
+  disableButtons();
+
+  return time, wordsChoice, resetTime;
+}
 
 // initialize Game
-
-function init() {
-  // load word from array
-  showWord(words);
-
-  //   lvlCh(words);
+function init(wordsChoice) {
+  showWord(wordsChoice);
 
   // Start matching on word input
   wordInput.addEventListener("input", startMatch);
@@ -62,10 +143,11 @@ function init() {
 
 // Start Match
 function startMatch() {
+  newGame.disabled = true;
   if (matchWords()) {
     isPlaying = true;
-    time = 6;
-    showWord(words);
+    time = resetTime;
+    showWord();
     wordInput.value = "";
     score++;
   }
@@ -88,11 +170,11 @@ function matchWords() {
   }
 }
 
-function showWord(words) {
+function showWord() {
   // generate random array index
-  const randIndex = Math.floor(Math.random() * 7);
+  const randIndex = Math.floor(Math.random() * 15);
   // Output random word
-  currentWord.innerHTML = words[randIndex];
+  currentWord.innerHTML = wordsChoice[randIndex];
 }
 
 //Countdown timer
@@ -109,10 +191,31 @@ function countdown() {
 }
 
 // Check game status
-
 function checkStatus() {
   if (!isPlaying && time === 0) {
     message.innerHTML = "Game is over";
     score = -1;
+    wordInput.disabled = true;
+    easy.disabled = true;
+    medium.disabled = true;
+    hard.disabled = true;
+    newGame.disabled = false;
   }
+}
+
+function restartGame() {
+  enableButtons();
+  wordInput.disabled = false;
+  location.reload(true);
+}
+
+function disableButtons() {
+  easy.disabled = true;
+  medium.disabled = true;
+  hard.disabled = true;
+}
+function enableButtons() {
+  easy.disabled = false;
+  medium.disabled = false;
+  hard.disabled = false;
 }
