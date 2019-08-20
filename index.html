@@ -17,29 +17,31 @@
   </head>
 
   <body class="cyan darken-2">
-    <nav>
-      <div class="nav-wrapper teal lighten-4">
-        <a href="#" class="brand-logo center">Word Beater</a>
+    <header>
+      <div class="">
+        <a href="#" class="brand-logo center"><h2>Word Beater</h2></a>
       </div>
-    </nav>
+    </header>
     <div class="body-wrap">
       <div class="btn-container">
         <div class="col col-lg-3">
           <div class="col lg-12">
-            <button id="easy" class="button red">Easy</button>
+            <button id="easy" class="button hover ">Easy</button>
           </div>
           <div class=" col lg-12">
-            <button id="medium" class="button button-shadow green">
+            <button id="medium" class="button hover button-shadow green">
               Medium
             </button>
           </div>
           <div class="col lg-12">
-            <button id="hard" class="button button-shadow">
+            <button id="hard" class="button hover button-shadow">
               Hard
             </button>
           </div>
           <div class="col lg-12">
-            <button id="newGame" class="btn-large red">New Game</button>
+            <button id="newGame" class="button  hover-NG button-shadow ">
+              New Game
+            </button>
           </div>
         </div>
       </div>
@@ -47,35 +49,33 @@
         <div class="">
           <h1 class="">
             How fast can you type?
-            <!-- <span class="text-success" id="seconds"> 5</span> -->
           </h1>
-          <h2 class="" id="current-word"></h2>
+          <h1 class="" id="current-word"></h1>
           <div class="row">
             <div class="col offset-s3 s6 offset-s3">
               <input
                 placeholder="Enter the word as it appears...."
                 id="word-input"
                 type="text"
-                autofocus
               />
             </div>
           </div>
           <div>
-            <h4 id="message" class=""></h4>
+            <h2 id="message" class=""></h2>
           </div>
           <div class="dashboard">
-            <h4 class="left">
+            <h3 class="left">
               Time left:
               <span id="time">
                 0
               </span>
-            </h4>
-            <h4 class="right">
+            </h3>
+            <h3 class="right">
               Score:
               <span id="score">
                 0
               </span>
-            </h4>
+            </h3>
           </div>
         </div>
       </div>

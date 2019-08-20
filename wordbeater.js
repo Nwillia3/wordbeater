@@ -115,7 +115,7 @@ function levelSelector(e) {
   }
   // console.log(level);
 
-  wordInput.setAttribute("autofocus", "autofocus");
+  // wordInput.setAttribute("autofocus", "autofocus");
 
   // showWord(level.words);
   time = level.time;
@@ -144,6 +144,7 @@ function init(wordsChoice) {
 // Start Match
 function startMatch() {
   newGame.disabled = true;
+  newGame.classList.remove("hover-NG");
   if (matchWords()) {
     isPlaying = true;
     time = resetTime;
@@ -200,6 +201,7 @@ function checkStatus() {
     medium.disabled = true;
     hard.disabled = true;
     newGame.disabled = false;
+    newGame.classList.add("hover-NG");
   }
 }
 
@@ -213,9 +215,17 @@ function disableButtons() {
   easy.disabled = true;
   medium.disabled = true;
   hard.disabled = true;
+
+  easy.classList.remove("hover");
+  medium.classList.remove("hover");
+  hard.classList.remove("hover");
 }
 function enableButtons() {
   easy.disabled = false;
   medium.disabled = false;
   hard.disabled = false;
+
+  easy.classList.add("hover");
+  medium.classList.add("hover");
+  hard.classList.add("hover");
 }
